@@ -1,0 +1,187 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALIGN_N_BYTE	app.c	26;"	d	file:
+ALIGN_N_BYTE	m6x_api.h	63;"	d
+ARG_ADDR	ioctl.c	/^	ARG_ADDR,$/;"	e	enum:__anon11	file:
+ARG_EN	ioctl.c	/^	ARG_EN,$/;"	e	enum:__anon11	file:
+ARG_INDEX	ioctl.c	/^} ARG_INDEX;$/;"	t	typeref:enum:__anon11	file:
+ARG_SIZE	ioctl.c	/^	ARG_SIZE,$/;"	e	enum:__anon11	file:
+ARG_VALUE	ioctl.c	/^	ARG_VALUE,$/;"	e	enum:__anon11	file:
+BIT_CLR	m6x_api.h	62;"	d
+BIT_SET	m6x_api.h	61;"	d
+DRVER_NAME	pcie.c	18;"	d	file:
+KERNEL_DIR	Makefile	/^KERNEL_DIR ?= \/lib\/modules\/$(shell uname -r)\/build$/;"	m
+M6X_ARG_MAX	ioctl.c	/^	M6X_ARG_MAX$/;"	e	enum:__anon11	file:
+MODULE_NAME	Makefile	/^MODULE_NAME = m6xdrv$/;"	m
+PWD	Makefile	/^PWD := $(shell pwd)$/;"	m
+__M6X_API_H__	m6x_api.h	17;"	d
+app_signal_func	app.c	/^void app_signal_func(int sig)  $/;"	f
+arg_index	ioctl.c	/^arg_t *arg_index(unsigned int index)$/;"	f
+arg_t	ioctl.c	/^} arg_t;$/;"	t	typeref:struct:__anon10	file:
+args_value	ioctl.c	/^unsigned long args_value(int index)$/;"	f
+bar	pcie.c	/^	bar_info_t bar[8];$/;"	m	struct:__anon2	file:
+bar_info_t	pcie.c	/^} bar_info_t;$/;"	t	typeref:struct:__anon1	file:
+bar_num	pcie.c	/^	int bar_num;$/;"	m	struct:__anon2	file:
+base_irq	pcie.c	/^int base_irq ;$/;"	v
+button_async	ioctl.c	/^static struct fasync_struct *button_async; $/;"	v	typeref:struct:fasync_struct	file:
+char_drv_info	ioctl.c	/^char_drv_info_t char_drv_info = { 0 };$/;"	v
+char_drv_info_t	ioctl.c	/^} char_drv_info_t;$/;"	t	typeref:struct:__anon8	file:
+char_ioctl	ioctl.c	/^long char_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)$/;"	f
+char_ioctl_cmd	ioctl.c	/^int char_ioctl_cmd(unsigned char *input, int input_len, tlv_t * replay)$/;"	f
+char_ioctl_fasync	ioctl.c	/^static int char_ioctl_fasync (int fd, struct file *filp, int on)  $/;"	f	file:
+char_no_zero	uart.c	/^int char_no_zero(unsigned char *dst, unsigned char *src, int *len)$/;"	f
+char_open	ioctl.c	/^int char_open(struct inode *inode, struct file *filp)$/;"	f
+char_read	ioctl.c	/^ssize_t char_read(struct file * filp, char __user * buffer, size_t count,$/;"	f
+char_release	ioctl.c	/^int char_release(struct inode *inode, struct file *filp)$/;"	f
+char_write	ioctl.c	/^ssize_t char_write(struct file * filp, const char __user * buffer, size_t count,$/;"	f
+class	pps.c	/^	unsigned char  class;$/;"	m	struct:__anon4	file:
+cmd_args	ioctl.c	/^static arg_t cmd_args[M6X_ARG_MAX] = {$/;"	v	file:
+cmdline_args	ioctl.c	/^int cmdline_args(char *cmdline, char *cmd, arg_t * args, int argc)$/;"	f
+def	ioctl.c	/^	unsigned long def;$/;"	m	struct:__anon10	file:
+dev	pcie.c	/^	struct pci_dev *dev;$/;"	m	struct:__anon2	typeref:struct:__anon2::pci_dev	file:
+device_id	pcie.c	/^	unsigned short device_id;$/;"	m	struct:__anon2	file:
+dm_t	m6x_api.h	/^}dm_t;$/;"	t	typeref:struct:__anon3
+dmalloc	pcie.c	/^int dmalloc(dm_t *dm, int size)$/;"	f
+dmfree	pcie.c	/^int dmfree(dm_t *dm)$/;"	f
+fcs	pps.c	/^	unsigned char  fcs;$/;"	m	struct:__anon5	file:
+fcs	pps.c	/^	unsigned char  fcs;$/;"	m	struct:__anon6	file:
+fop	ioctl.c	/^static struct file_operations fop = {$/;"	v	typeref:struct:file_operations	file:
+g_fd	app.c	/^static int g_fd;$/;"	v	file:
+hdr	pps.c	/^	tod_hdr_t      hdr;$/;"	m	struct:__anon5	file:
+hdr	pps.c	/^	tod_hdr_t      hdr;$/;"	m	struct:__anon6	file:
+hex2char	ioctl.c	/^int hex2char(unsigned int *arry, int len)$/;"	f
+hexdump	app.c	/^int hexdump(char *name, char *buf, int len)$/;"	f
+hexdump	ioctl.c	/^int hexdump(char *name, char *buf, int len)$/;"	f
+hw_xmit	eth.c	/^int hw_xmit(unsigned long phy, int len)$/;"	f
+hwcopy	ioctl.c	/^int hwcopy(unsigned char *dest, unsigned char *src, int len)$/;"	f
+id	ioctl.c	/^	unsigned int id;$/;"	m	struct:__anon10	file:
+id	pps.c	/^	unsigned char  id;$/;"	m	struct:__anon4	file:
+in_use	pcie.c	/^	int in_use;$/;"	m	struct:__anon2	file:
+ioctl_timer	ioctl.c	/^struct timer_list ioctl_timer;$/;"	v	typeref:struct:timer_list
+ioctl_timer_func	ioctl.c	/^void ioctl_timer_func(unsigned long data)$/;"	f
+ioctl_trigger	ioctl.c	/^int ioctl_trigger(void)$/;"	f
+irq	pcie.c	/^	int irq;$/;"	m	struct:__anon2	file:
+irq_en	pcie.c	/^	int irq_en;$/;"	m	struct:__anon2	file:
+irq_line	pcie.c	/^	unsigned char irq_line;$/;"	m	struct:__anon2	file:
+irq_num	pcie.c	/^	int irq_num;$/;"	m	struct:__anon2	file:
+irq_pin	pcie.c	/^	unsigned char irq_pin;$/;"	m	struct:__anon2	file:
+isdigit	ioctl.c	18;"	d	file:
+islower	ioctl.c	19;"	d	file:
+isxdigit	ioctl.c	22;"	d	file:
+l	app.c	/^	unsigned int l;$/;"	m	struct:__anon7	file:
+l	ioctl.c	/^	unsigned int l;$/;"	m	struct:__anon9	file:
+leaps	pps.c	/^	unsigned char  leaps;$/;"	m	struct:__anon5	file:
+legacy_en	pcie.c	/^	int legacy_en; \/*legacy 遗产*\/$/;"	m	struct:__anon2	file:
+len	pps.c	/^	unsigned char  len[2];$/;"	m	struct:__anon4	file:
+lock	ioctl.c	/^spinlock_t lock;$/;"	v
+m6x_buffer_get	ioctl.c	/^int m6x_buffer_get(unsigned char *buf, int *len)$/;"	f
+m6x_buffer_init	ioctl.c	/^int m6x_buffer_init(void)$/;"	f
+m6x_buffer_len	ioctl.c	/^int m6x_buffer_len(void)$/;"	f
+m6x_buffer_put	ioctl.c	/^int m6x_buffer_put(unsigned char *buf, int len)$/;"	f
+m6x_ioctl_exit	ioctl.c	/^void m6x_ioctl_exit(void)$/;"	f
+m6x_ioctl_init	ioctl.c	/^int m6x_ioctl_init(void)$/;"	f
+m6x_mreg_write	pcie.c	/^int m6x_mreg_write(unsigned int reg, unsigned char *buf, int len)$/;"	f
+m6x_pcie_device	pcie.c	/^m6x_pcie_t *m6x_pcie_device = NULL;$/;"	v
+m6x_pcie_driver	pcie.c	/^static struct pci_driver m6x_pcie_driver = {$/;"	v	typeref:struct:pci_driver	file:
+m6x_pcie_exit	pcie.c	/^module_exit(m6x_pcie_exit);$/;"	v
+m6x_pcie_exit	pcie.c	/^static void __exit m6x_pcie_exit(void)$/;"	f	file:
+m6x_pcie_init	pcie.c	/^module_init(m6x_pcie_init);$/;"	v
+m6x_pcie_init	pcie.c	/^static int __init m6x_pcie_init(void)$/;"	f	file:
+m6x_pcie_legacy_irq	pcie.c	/^int m6x_pcie_legacy_irq(int irq, void *arg)$/;"	f
+m6x_pcie_msi_irq	pcie.c	/^int m6x_pcie_msi_irq(int irq, void *arg)$/;"	f
+m6x_pcie_probe	pcie.c	/^static int m6x_pcie_probe(struct pci_dev *dev,$/;"	f	file:
+m6x_pcie_remove	pcie.c	/^static void m6x_pcie_remove(struct pci_dev *dev)$/;"	f	file:
+m6x_pcie_t	pcie.c	/^} m6x_pcie_t;$/;"	t	typeref:struct:__anon2	file:
+m6x_pcie_tbl	pcie.c	/^static struct pci_device_id m6x_pcie_tbl[] = {$/;"	v	typeref:struct:pci_device_id	file:
+m6x_pps_16ns	pps.c	/^int m6x_pps_16ns(int value)$/;"	f
+m6x_pps_1us	pps.c	/^int m6x_pps_1us(int value)$/;"	f
+m6x_pps_buffer	pps.c	/^char m6x_pps_buffer[2][0x84];$/;"	v
+m6x_pps_en	pps.c	/^int m6x_pps_en(int value)$/;"	f
+m6x_pps_init	pps.c	/^int m6x_pps_init(void)$/;"	f
+m6x_pps_interrupt	pps.c	/^int m6x_pps_interrupt(void)$/;"	f
+m6x_pps_interrupt_buffer	pps.c	/^unsigned char m6x_pps_interrupt_buffer[1024];$/;"	v
+m6x_pps_tod_get	pps.c	/^int m6x_pps_tod_get(int id, unsigned char *report, int *len)$/;"	f
+m6x_reg_bit_clr	pcie.c	/^int m6x_reg_bit_clr(unsigned int reg, int bit)$/;"	f
+m6x_reg_bit_set	pcie.c	/^int m6x_reg_bit_set(unsigned int reg, int bit)$/;"	f
+m6x_reg_read	pcie.c	/^int m6x_reg_read(unsigned int reg, unsigned int *value)$/;"	f
+m6x_reg_write	pcie.c	/^int m6x_reg_write(unsigned int reg, unsigned int value)$/;"	f
+m6x_regs_dump	pcie.c	/^int m6x_regs_dump(void)$/;"	f
+m6x_tod_buffer	pps.c	/^char m6x_tod_buffer[5][254];$/;"	v
+m6x_tod_display	pps.c	/^int m6x_tod_display = 1;$/;"	v
+m6x_tod_display_set	pps.c	/^int m6x_tod_display_set(int en)$/;"	f
+m6x_uart_init	uart.c	/^int m6x_uart_init(void)$/;"	f
+m6x_uart_reset	uart.c	/^int m6x_uart_reset(void)$/;"	f
+m6x_uart_rx_test	uart.c	/^int m6x_uart_rx_test(void)$/;"	f
+m6x_uart_rx_work	uart.c	/^int m6x_uart_rx_work(void)$/;"	f
+m6x_uart_rx_work__	uart.c	/^int m6x_uart_rx_work__(void)$/;"	f
+m6x_uart_tx	uart.c	/^int m6x_uart_tx(unsigned char *buf, int len, int timeout)$/;"	f
+m6x_uart_tx_test	uart.c	/^int m6x_uart_tx_test(unsigned char *str, int len)$/;"	f
+main	app.c	/^int main(int argc, char *argv[])$/;"	f
+main_buffer	app.c	/^unsigned char main_buffer[4096];$/;"	v
+major	ioctl.c	/^	int major;$/;"	m	struct:__anon8	file:
+mem	pcie.c	/^	unsigned char *mem;$/;"	m	struct:__anon1	file:
+mmio_end	pcie.c	/^	resource_size_t mmio_end;$/;"	m	struct:__anon1	file:
+mmio_flags	pcie.c	/^	unsigned long mmio_flags;$/;"	m	struct:__anon1	file:
+mmio_len	pcie.c	/^	resource_size_t mmio_len;$/;"	m	struct:__anon1	file:
+mmio_start	pcie.c	/^	resource_size_t mmio_start;$/;"	m	struct:__anon1	file:
+monitor	pps.c	/^	unsigned short monitor;$/;"	m	struct:__anon6	file:
+msi_en	pcie.c	/^	int msi_en;$/;"	m	struct:__anon2	file:
+msix	pcie.c	/^	struct msix_entry msix[100];$/;"	m	struct:__anon2	typeref:struct:__anon2::msix_entry	file:
+msix_en	pcie.c	/^	int msix_en;$/;"	m	struct:__anon2	file:
+myclass	ioctl.c	/^	struct class *myclass;$/;"	m	struct:__anon8	typeref:struct:__anon8::class	file:
+mydev	ioctl.c	/^	struct device *mydev;$/;"	m	struct:__anon8	typeref:struct:__anon8::device	file:
+name	ioctl.c	/^	char *name;$/;"	m	struct:__anon10	file:
+obj-m	Makefile	/^obj-m     := $(MODULE_NAME).o$/;"	m
+pcie_bar_read	pcie.c	/^int pcie_bar_read(int bar, int offset, unsigned char *buf, int len)$/;"	f
+pcie_bar_vmem	pcie.c	/^char *pcie_bar_vmem(int bar)$/;"	f
+pcie_bar_write	pcie.c	/^int pcie_bar_write(int bar, int offset, unsigned char *buf, int len)$/;"	f
+pcie_config_read	pcie.c	/^int pcie_config_read(int offset, char *buf, int len)$/;"	f
+pcie_config_write	pcie.c	/^int pcie_config_write(int offset, char *buf, int len)$/;"	f
+phy	m6x_api.h	/^	unsigned long phy;$/;"	m	struct:__anon3
+pps_polling	pps.c	/^int pps_polling(int ms)$/;"	f
+pps_pretimer_set	pps.c	/^int pps_pretimer_set(int ms)$/;"	f
+pps_tod_to_time	pps.c	/^int pps_tod_to_time(unsigned char *str, struct rtc_time *tm)$/;"	f
+revision	pcie.c	/^	unsigned char revision;$/;"	m	struct:__anon2	file:
+rsvd1	pps.c	/^	unsigned char  rsvd1[11];$/;"	m	struct:__anon6	file:
+rsvd1	pps.c	/^	unsigned int   rsvd1;$/;"	m	struct:__anon5	file:
+rsvd2	pps.c	/^	unsigned char  rsvd2[3];$/;"	m	struct:__anon5	file:
+run_ioctl	app.c	/^int run_ioctl(int fd, int cmd, unsigned char *buf)$/;"	f
+rx_fifo	ioctl.c	/^static struct kfifo rx_fifo;$/;"	v	typeref:struct:kfifo	file:
+rx_test	eth.c	/^int rx_test(int addr, int size)$/;"	f
+save	pcie.c	/^	struct pci_saved_state *save;$/;"	m	struct:__anon2	typeref:struct:__anon2::pci_saved_state	file:
+sign_buffer	app.c	/^unsigned char sign_buffer[4096];$/;"	v
+size	m6x_api.h	/^	int size;$/;"	m	struct:__anon3
+source	pps.c	/^	unsigned short source;$/;"	m	struct:__anon6	file:
+state	pps.c	/^	unsigned char  state;$/;"	m	struct:__anon5	file:
+sub_system_id	pcie.c	/^	unsigned short sub_system_id;$/;"	m	struct:__anon2	file:
+sub_vendor_id	pcie.c	/^	unsigned short sub_vendor_id;$/;"	m	struct:__anon2	file:
+sync	pps.c	/^	unsigned short sync;$/;"	m	struct:__anon4	file:
+t	app.c	/^	unsigned int t;$/;"	m	struct:__anon7	file:
+t	ioctl.c	/^	unsigned int t;$/;"	m	struct:__anon9	file:
+tacc	pps.c	/^	unsigned char  tacc;$/;"	m	struct:__anon5	file:
+testcdev	ioctl.c	/^	struct cdev testcdev;$/;"	m	struct:__anon8	typeref:struct:__anon8::cdev	file:
+time_d_ms	app.c	/^static long time_d_ms(struct timeval *start, struct timeval *end)$/;"	f	file:
+tlv_t	app.c	/^} tlv_t;$/;"	t	typeref:struct:__anon7	file:
+tlv_t	ioctl.c	/^} tlv_t;$/;"	t	typeref:struct:__anon9	file:
+tm_to_tvsec	pps.c	/^int tm_to_tvsec(struct rtc_time *tm, unsigned long *tvsec)$/;"	f
+tod_hdr_t	pps.c	/^}__attribute__ ((packed)) tod_hdr_t;$/;"	t	typeref:struct:__anon4	file:
+tod_time_info_t	pps.c	/^}__attribute__ ((packed)) tod_time_info_t;$/;"	t	typeref:struct:__anon5	file:
+tod_time_state_t	pps.c	/^}__attribute__ ((packed)) tod_time_state_t;$/;"	t	typeref:struct:__anon6	file:
+toupper	ioctl.c	20;"	d	file:
+tow	pps.c	/^	unsigned int   tow;$/;"	m	struct:__anon5	file:
+tvsec_to_tm	pps.c	/^int tvsec_to_tm(unsigned long tvsec, struct rtc_time *tm)$/;"	f
+tx_test	eth.c	/^int tx_test(int value)$/;"	f
+type	pps.c	/^	unsigned char  type;$/;"	m	struct:__anon6	file:
+uart_inter_set_timer_func	ioctl.c	/^void uart_inter_set_timer_func(unsigned long data)$/;"	f
+uart_inter_timer	ioctl.c	/^struct timer_list uart_inter_timer;$/;"	v	typeref:struct:timer_list
+uralt_timer	ioctl.c	/^struct timer_list uralt_timer;$/;"	v	typeref:struct:timer_list
+v	app.c	/^	unsigned char v[0];$/;"	m	struct:__anon7	file:
+v	ioctl.c	/^	unsigned char v[0];$/;"	m	struct:__anon9	file:
+vendor_id	pcie.c	/^	unsigned short vendor_id;$/;"	m	struct:__anon2	file:
+vir	m6x_api.h	/^	unsigned long vir;$/;"	m	struct:__anon3
+vmem	pcie.c	/^	unsigned char *vmem;$/;"	m	struct:__anon1	file:
+week	pps.c	/^	unsigned short week;$/;"	m	struct:__anon5	file:
