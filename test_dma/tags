@@ -1,0 +1,77 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALIGN_N_BYTE	m6x_api.h	63;"	d
+BIT_CLR	m6x_api.h	62;"	d
+BIT_SET	m6x_api.h	61;"	d
+DRVER_NAME	dma_test.c	7;"	d	file:
+KERNEL_DIR	Makefile	/^KERNEL_DIR ?= \/lib\/modules\/$(shell uname -r)\/build$/;"	m
+MODULE_NAME	Makefile	/^MODULE_NAME = dma_pcie$/;"	m
+PWD	Makefile	/^PWD := $(shell pwd)$/;"	m
+__M6X_API_H__	m6x_api.h	17;"	d
+bar	dma_test.c	/^	bar_info_t bar[8];$/;"	m	struct:__anon3	file:
+bar_info_t	dma_test.c	/^} bar_info_t;$/;"	t	typeref:struct:__anon2	file:
+bar_num	dma_test.c	/^	int bar_num;$/;"	m	struct:__anon3	file:
+dev	dma_test.c	/^	struct pci_dev *dev;$/;"	m	struct:__anon3	typeref:struct:__anon3::pci_dev	file:
+device_id	dma_test.c	/^	unsigned short device_id;$/;"	m	struct:__anon3	file:
+dm_t	m6x_api.h	/^}dm_t;$/;"	t	typeref:struct:__anon1
+dma_send_timer	dma_test.c	/^struct timer_list dma_send_timer;$/;"	v	typeref:struct:timer_list
+dma_send_timer_func	dma_test.c	/^void dma_send_timer_func(unsigned long data)$/;"	f
+dma_test_exit	dma_test.c	/^module_exit(dma_test_exit);$/;"	v
+dma_test_exit	dma_test.c	/^static void __exit dma_test_exit(void)$/;"	f	file:
+dma_test_init	dma_test.c	/^module_init(dma_test_init);$/;"	v
+dma_test_init	dma_test.c	/^static int __init dma_test_init(void)$/;"	f	file:
+dmalloc	dma_test.c	/^int dmalloc(dm_t *dm, int size)$/;"	f
+hexdump	dma_test.c	/^int hexdump(char *name, char *buf, int len)$/;"	f
+hw_xmit	dma_test.c	/^int hw_xmit(unsigned long phy, int len)$/;"	f
+hwcopy	dma_test.c	/^int hwcopy(unsigned char *dest, unsigned char *src, int len)$/;"	f
+in_use	dma_test.c	/^	int in_use;$/;"	m	struct:__anon3	file:
+irq	dma_test.c	/^	int irq;$/;"	m	struct:__anon3	file:
+irq_en	dma_test.c	/^	int irq_en;$/;"	m	struct:__anon3	file:
+irq_line	dma_test.c	/^	unsigned char irq_line;$/;"	m	struct:__anon3	file:
+irq_num	dma_test.c	/^	int irq_num;$/;"	m	struct:__anon3	file:
+irq_pin	dma_test.c	/^	unsigned char irq_pin;$/;"	m	struct:__anon3	file:
+legacy_en	dma_test.c	/^	int legacy_en; \/*legacy 遗产*\/$/;"	m	struct:__anon3	file:
+m6x_pcie_device	dma_test.c	/^m6x_pcie_t *m6x_pcie_device = NULL;$/;"	v
+m6x_pcie_driver	dma_test.c	/^static struct pci_driver m6x_pcie_driver = {$/;"	v	typeref:struct:pci_driver	file:
+m6x_pcie_msi_irq	dma_test.c	/^int m6x_pcie_msi_irq(int irq, void *arg)$/;"	f
+m6x_pcie_probe	dma_test.c	/^static int m6x_pcie_probe(struct pci_dev *dev,$/;"	f	file:
+m6x_pcie_remove	dma_test.c	/^static void m6x_pcie_remove(struct pci_dev *dev)$/;"	f	file:
+m6x_pcie_t	dma_test.c	/^} m6x_pcie_t;$/;"	t	typeref:struct:__anon3	file:
+m6x_pcie_tbl	dma_test.c	/^static struct pci_device_id m6x_pcie_tbl[] = {$/;"	v	typeref:struct:pci_device_id	file:
+m6x_reg_bit_clr	dma_test.c	/^int m6x_reg_bit_clr(unsigned int reg, int bit)$/;"	f
+m6x_reg_bit_set	dma_test.c	/^int m6x_reg_bit_set(unsigned int reg, int bit)$/;"	f
+m6x_reg_read	dma_test.c	/^int m6x_reg_read(unsigned int reg, unsigned int *value)$/;"	f
+m6x_reg_write	dma_test.c	/^int m6x_reg_write(unsigned int reg, unsigned int value)$/;"	f
+mem	dma_test.c	/^	unsigned char *mem;$/;"	m	struct:__anon2	file:
+mmio_end	dma_test.c	/^	resource_size_t mmio_end;$/;"	m	struct:__anon2	file:
+mmio_flags	dma_test.c	/^	unsigned long mmio_flags;$/;"	m	struct:__anon2	file:
+mmio_len	dma_test.c	/^	resource_size_t mmio_len;$/;"	m	struct:__anon2	file:
+mmio_start	dma_test.c	/^	resource_size_t mmio_start;$/;"	m	struct:__anon2	file:
+msi_en	dma_test.c	/^	int msi_en;$/;"	m	struct:__anon3	file:
+msix	dma_test.c	/^	struct msix_entry msix[100];$/;"	m	struct:__anon3	typeref:struct:__anon3::msix_entry	file:
+msix_en	dma_test.c	/^	int msix_en;$/;"	m	struct:__anon3	file:
+obj-m	Makefile	/^obj-m     := $(MODULE_NAME).o$/;"	m
+pcie_bar_read	dma_test.c	/^int pcie_bar_read(int bar, int offset, unsigned char *buf, int len)$/;"	f
+pcie_bar_write	dma_test.c	/^int pcie_bar_write(int bar, int offset, unsigned char *buf, int len)$/;"	f
+phy	m6x_api.h	/^	unsigned long phy;$/;"	m	struct:__anon1
+read_dma_buf	dma_test.c	/^int read_dma_buf( int size){$/;"	f
+read_dma_buf_char	dma_test.c	/^static unsigned char *read_dma_buf_char;$/;"	v	file:
+read_dma_buf_word	dma_test.c	/^static unsigned int  *read_dma_buf_word;$/;"	v	file:
+read_reg_timer	dma_test.c	/^struct timer_list read_reg_timer;$/;"	v	typeref:struct:timer_list
+read_reg_timer_func	dma_test.c	/^void read_reg_timer_func(unsigned long data)$/;"	f
+revision	dma_test.c	/^	unsigned char revision;$/;"	m	struct:__anon3	file:
+rx_test	dma_test.c	/^int rx_test(int addr, int size)\/\/0,4$/;"	f
+save	dma_test.c	/^	struct pci_saved_state *save;$/;"	m	struct:__anon3	typeref:struct:__anon3::pci_saved_state	file:
+size	m6x_api.h	/^	int size;$/;"	m	struct:__anon1
+sub_system_id	dma_test.c	/^	unsigned short sub_system_id;$/;"	m	struct:__anon3	file:
+sub_vendor_id	dma_test.c	/^	unsigned short sub_vendor_id;$/;"	m	struct:__anon3	file:
+tx_test	dma_test.c	/^int tx_test(int value)$/;"	f
+vendor_id	dma_test.c	/^	unsigned short vendor_id;$/;"	m	struct:__anon3	file:
+vir	m6x_api.h	/^	unsigned long vir;$/;"	m	struct:__anon1
+vmem	dma_test.c	/^	unsigned char *vmem;$/;"	m	struct:__anon2	file:
+write_dma_buf_char	dma_test.c	/^static unsigned char *write_dma_buf_char;$/;"	v	file:
+write_dma_buf_word	dma_test.c	/^static unsigned int  *write_dma_buf_word;$/;"	v	file:
