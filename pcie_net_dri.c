@@ -398,16 +398,7 @@ int m6x_pcie_msi_irq(int irq, void *arg)
 	if(irq == 33)
 	{
 		printk(KERN_ERR "msi(33)\n");
-		//m6x_uart_rx_work();
-		/*
 
-		if(m6x_buffer_len() > 0)
-		{
-			ioctl_trigger();	
-		}
-		*/
-		/*m6x_reg_bit_clr(0x88, 0);
-		m6x_reg_bit_set(0x88, 0);*/
 		return IRQ_HANDLED;
 	}
 	if(irq == 30)
@@ -499,42 +490,6 @@ static int m6x_pcie_dev_init_ops(pcie_ether_ptp_m6x_pri_data_t * m6x_net_pri_dat
 		priv->in_use = 1;
 		goto err_out;
 	}
-#if 0
-	if(priv->legacy_en == 1)
-	{
-		ret = request_irq(priv->irq,
-				(irq_handler_t) (&m6x_pcie_legacy_irq),
-				IRQF_SHARED, DRVER_NAME, (void *)priv);
-		/*
-		ret = request_irq(priv->irq,
-				(irq_handler_t) (&m6x_pcie_legacy_irq),
-				IRQF_NO_SUSPEND | IRQF_NO_THREAD | IRQF_PERCPU, 
-				DRVER_NAME, (void *)priv);
-		*/
-		if (ret)
-			printk(KERN_ERR "%s request_irq(%d), error %d\n", __func__, priv->irq, ret);
-		else
-			printk(KERN_ERR "%s request_irq(%d) ok\n", __func__, priv->irq);
-	}
-	if (priv->msi_en == 1) {
-		for (i = 0; i < priv->irq_num; i++) {
-			ret =
-			    request_irq(priv->irq + i,
-					(irq_handler_t) (&m6x_pcie_msi_irq),
-					IRQF_SHARED, DRVER_NAME, (void *)priv);
-			if (ret) {
-				printk(KERN_ERR "%s request_irq(%d), error %d\n",
-				       __func__, priv->irq + i, ret);
-				break;
-			}
-			printk(KERN_ERR "%s request_irq(%d) ok\n", __func__, priv->irq + i);
-		}
-		if (i == priv->irq_num)
-			priv->irq_en = 1;
-		//pci_write_config_dword(dev, 0x5c, 0);
-		//pci_write_config_dword(dev, 0x60, 0);		
-	}
-#endif
 	device_wakeup_enable(&(priv->pdev->dev));
 	printk(KERN_ERR "%s ok\n", __func__);
 	return 0;
@@ -620,23 +575,12 @@ static void pcie_net_remove(struct pci_dev *dev)
 	if ( netdev){
 
 		priv = netdev_priv(netdev) ;
-#if 0
-		if(priv->legacy_en == 1) {
-			free_irq(priv->irq, (void *)priv);
-		}
-		if (1 == priv->msi_en) {
-			for (i = 0; i < priv->irq_num; i++) {
-				free_irq(priv->irq + i, (void *)priv);
-			}
-			pci_disable_msi(dev);
-		}
-#endif
+
 		for (i = 0; i < priv->bar_num; i++) {
 			if (NULL != priv->bar[i].mem)
 				iounmap(priv->bar[i].mem);
 		}
 		
-		//pci_disable_msi(dev);
 		
 		unregister_netdev( netdev) ;
 		
