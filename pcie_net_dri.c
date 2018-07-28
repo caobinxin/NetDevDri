@@ -8,6 +8,28 @@ unsigned int pcie_debug = 0b11111111 ;
 
 pcie_ether_ptp_m6x_pri_data_t *m6x_pri_data = NULL ;
 
+int hw_xmit(unsigned long phy, int len)
+{
+	unsigned int value;
+	printk(KERN_ERR "%s(0x%lx, %d)\n", __func__, phy, len);
+
+	m6x_reg_read(0x2c, &value);
+	printk(KERN_ERR "reg[0x2c]:0x%x\n", value);
+	if(value &(1<<8))
+	{	
+		m6x_reg_bit_clr(0x2c, 8);
+		m6x_reg_bit_set(0x2c, 8);
+	}
+	m6x_reg_write(0x40, (unsigned int)phy);
+	m6x_reg_write(0x44, (unsigned int)(phy>>32));
+	m6x_reg_write(0x24, len);
+
+	m6x_reg_bit_clr(0x28,8) ;
+	m6x_reg_bit_set(0x28, 8);
+	m6x_reg_bit_clr(0x28,8) ;
+	return 0;
+}
+
 int hexdump(char *name, char *buf, int len)
 {
 	int i, count;
@@ -94,6 +116,7 @@ int receive_dma_ops(struct net_device *netdev)
 	static int size = 4 ;
 	pcie_ether_ptp_m6x_pri_data_t *priv = netdev_priv( netdev) ;
 	dm = &priv->rx_dm ;
+	PDEBUG( DEBUG7, "接收缓冲区的地址信息 藏在 priv->rx_dm 中") ;
 	if(flag == 0)
 	{
 		dmalloc(netdev,dm, 4096);
@@ -103,11 +126,14 @@ int receive_dma_ops(struct net_device *netdev)
 	}
 	memset(buf, 0x00, 4096);
 	printk(KERN_ERR "phy(0xl%x, 0xl%x), virt(0x%lx, 0x%lx)\n", dm->phy, virt_to_phys(dm->vir), dm->vir, phys_to_virt(dm->phy) );
+	PDEBUG( DEBUG7, "接收缓冲区的大小是 %d\n", size) ;
+	PDEBUG( DEBUG7, "将接收 缓冲区的物理地址 缓冲区的大小 告诉网卡中的寄存器  0x38 , 0x3c, 0xac, 0x28\n") ;
 	m6x_reg_write(0x38, (unsigned int)(dm->phy));
 	m6x_reg_write(0x3c, (unsigned int)(dm->phy>>32));
 	m6x_reg_write(0xac, size);
-	m6x_reg_bit_set(0x28, 0);
-	hexdump("rx_test", buf, size);
+	
+	//hexdump("rx_test", buf, size);
+	
 	return 0;
 }
 
@@ -158,7 +184,28 @@ int dmfree( struct net_device *netdev,dm_t *dm)
 static irqreturn_t m6x_pcie_msi_receive_start_irq( int irq, void *args)
 {
 	//手动打开DMA 传输
+	PDEBUG( DEBUG7, "假接收中断....\n") ;
+	
+	PDEBUG( DEBUG7, "从特定寄存器中读出,需要接收的长度\n") ;
+	PDEBUG( DEBUG7, "//TODO\n") ;
+	
+	PDEBUG( DEBUG7, "启动DMA接收传输\n") ;
+	m6x_reg_bit_clr(0x28,8) ;
+	m6x_reg_bit_clr(0x28,0) ;
+	m6x_reg_bit_set(0x28, 0);// 动dma写    从网卡写数据到 内存中
+	m6x_reg_bit_clr(0x28,0) ;
+	
 	return IRQ_HANDLED ;
+}
+
+int read_dma_buf(unsigned char *buf , int size){
+	printk("==================================================\n") ;
+	printk("==============Read Dma Start======================\n") ;
+	printk("==================================================\n") ;
+	hexdump("dma接收到的数据:", buf, size);
+	printk("==================================================\n") ;
+	printk("==============Read Dma End========================\n") ;
+	printk("==================================================\n") ;
 }
 
 
@@ -169,22 +216,27 @@ static irqreturn_t m6x_pcie_msi_receive_irq( int irq, void *args)
 	int size = 0 ;/*从寄存器中读出 接受到的数据的值*/
 
 	pcie_ether_ptp_m6x_pri_data_t *priv = ( pcie_ether_ptp_m6x_pri_data_t *)args ;
-
+	PDEBUG( DEBUG7, "真的接收中断...\n") ;
 	PDEBUG(DEBUG7, "receive one package\n") ;
 	
 
 	/*2. 创建出skb*/
 	skb = dev_alloc_skb (RX_LEN) ;
-	skb->protocol = eth_type_trans(skb, priv->netdev) ;
+	skb->protocol = eth_type_trans(skb, priv->netdev) ;/*以太网协议*/
 
 	/*1. 从dma中 读出数据 放到 skb->data中*/
 
 	/*1.0 从寄存器中获取 size的长度 */
+	size = 1536 ;
+	PDEBUG( DEBUG7, "需要接收的数据长度为:%d\n", size) ;
 
 	memcmp( skb->data, priv->rx_dm.vir, size) ;
 
+	read_dma_buf( (unsigned char *) priv->rx_dm.vir, size) ;
+
 	/*3. 将skb提交到上层协议层*/
 	netif_rx( skb) ;
+	PDEBUG( DEBUG7, "已将 接收skb 提交到协议栈中") ;
 	
 	return IRQ_HANDLED ;
 }
@@ -196,6 +248,11 @@ static irqreturn_t m6x_pcie_msi_send_comple_irq( int irq, void *args)
 
 	PDEBUG(DEBUG7, "send package successful\n") ;
 	/*1.释放 发送时的SKB */
+	PDEBUG(DEBUG7, "释放skb") ;
+	dev_kfree_skb( priv->skb) ;
+
+	PDEBUG( DEBUG7, "启动协议栈发送") ;
+	netif_wake_queue( priv->netdev) ;/*等每次 发送完,在启动协议栈发送下一次 帧*/
 
 	return IRQ_HANDLED ;
 }
@@ -306,6 +363,9 @@ int m6x_hw_tx(char *data, int len, struct net_device *netdev)
 
 	/*启动硬件开始dma发送*/
 	PDEBUG(DEBUG7, "DMA 发送\n") ;
+	hw_xmit( priv->send_dma_phy_addr, len) ;
+	PDEBUG(DEBUG7, "DMA 发送结束\n") ;
+
 
 	return ret ;
 }
@@ -335,6 +395,10 @@ int m6x_start_xmit(struct sk_buff *skb, struct net_device *netdev)
 	
 	/*3. 由实际的硬件去发送*/
 	m6x_hw_tx(data, len, netdev) ;
+
+	/*4. 协议栈停止回调 m6x_start_xmit 函数*/
+	netif_stop_queue( netdev) ;
+	PDEBUG(DEBUG7, "协议栈停止回调 m6x_start_xmit 停止发送skb") ;
 
 	return ret ;
 }
@@ -553,7 +617,9 @@ static int pcie_net_probe(struct pci_dev *pdev,
 	//INIT_DELAYED_WORK( &m6x_net_pri_data_p->phy_poll, m6x_poll_work) ;
 	
 	/*映射接收 dma 空间*/
+	PDEBUG( DEBUG7, "分配接收缓冲区地址和大小 全局就分配这一次,在固定的地址处接收网卡传回的数据") ;
 	receive_dma_ops(netdev) ;
+
 	strcpy(netdev->name, "eth_M6x(%d)");
 	if ((err = register_netdev(netdev))) {
 		netif_err(m6x_net_pri_data_p, probe, m6x_net_pri_data_p->netdev, "Cannot register net device, aborting\n");
