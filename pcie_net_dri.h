@@ -332,7 +332,11 @@ int dmalloc(struct net_device *netdev, dm_t *dm, int size);
 int dmfree(struct net_device *netdev, dm_t *dm);
 int hw_xmit(unsigned long phy, int len);
 
+int pcie_bar_read(int bar, int offset, unsigned char *buf, int len);
 
+int m6x_reg_read(unsigned int reg, unsigned int *value);
+int hw_xmit(unsigned long phy, int len);
+int m6x_reg_bit_clr(unsigned int reg, int bit);
 #define PCIE_NET_DRI_DEBUG
 
 #define DEBUG0 0b00000001

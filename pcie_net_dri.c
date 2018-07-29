@@ -2,11 +2,31 @@
 
 #define DRVER_NAME      "pcie_net_m6x"
 
+char shortpkt[ETH_ZLEN] ;
+
 static int debug = 3 ;
 
 unsigned int pcie_debug = 0b11111111 ;
 
 pcie_ether_ptp_m6x_pri_data_t *m6x_pri_data = NULL ;
+
+int m6x_reg_read(unsigned int reg, unsigned int *value)
+{
+	pcie_bar_read(0, (int)reg,  (unsigned char *)value, 4);
+	printk(KERN_ERR "reg_read(0x%x, 0x%x)\n", reg, *value);
+    return 0;
+}
+
+int m6x_reg_bit_clr(unsigned int reg, int bit)
+{
+	unsigned int value;
+	
+	pcie_bar_read(0, reg,  (unsigned char *)&value, 4);
+	BIT_CLR(value, bit);
+	pcie_bar_write(0, reg,  (unsigned char *)&value, 4);
+	//printk(KERN_ERR "reg_bit_clr(0x%x, %d)\n", reg, bit);
+	return 0;
+}
 
 int hw_xmit(unsigned long phy, int len)
 {
@@ -113,13 +133,13 @@ int receive_dma_ops(struct net_device *netdev)
     dm_t *dm = NULL ;
 	static unsigned int  *dword;
 	static unsigned char *buf;
-	static int size = 4 ;
+	static int size = 4096 ;
 	pcie_ether_ptp_m6x_pri_data_t *priv = netdev_priv( netdev) ;
 	dm = &priv->rx_dm ;
 	PDEBUG( DEBUG7, "接收缓冲区的地址信息 藏在 priv->rx_dm 中") ;
 	if(flag == 0)
 	{
-		dmalloc(netdev,dm, 4096);
+		dmalloc(netdev,dm, size);
 		dword  = (unsigned int  *)(dm->vir);
 		buf    = (unsigned char *)(dm->vir);
 		flag = 1;
@@ -375,14 +395,16 @@ int m6x_start_xmit(struct sk_buff *skb, struct net_device *netdev)
 	int ret = 0 ;
 
 	int len ;
-	char *data, shortpkt[ETH_ZLEN] ;
+	char *data ;
 	 pcie_ether_ptp_m6x_pri_data_t *priv = netdev_priv(netdev) ;
 
 	/*1. 对要发送数据的修改*/
 	data = skb->data ;
 	len = skb->len ;
+	PDEBUG( DEBUG7, "发送长度 len = %d\n", len) ;
 	if ( len < ETH_ZLEN)
 	{
+		PDEBUG( DEBUG7, "发送包数据过小... 换小包发送\n") ;
 		memset(shortpkt, 0, ETH_ZLEN) ;
 		memcpy(shortpkt, skb->data, skb->len) ;
 		len = ETH_ZLEN ;
@@ -646,7 +668,8 @@ static void pcie_net_remove(struct pci_dev *dev)
 			if (NULL != priv->bar[i].mem)
 				iounmap(priv->bar[i].mem);
 		}
-		
+
+		dmfree( priv->netdev, &priv->rx_dm) ;
 		
 		unregister_netdev( netdev) ;
 		
