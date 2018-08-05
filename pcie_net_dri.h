@@ -272,6 +272,7 @@ typedef struct pcie_ether_data_t
 	spinlock_t lock ;
 	dma_addr_t send_dma_phy_addr ;
 	dm_t rx_dm ;
+	dm_t tx_dm ;
 	bool irq_ready ;
 
 } pcie_ether_ptp_m6x_pri_data_t ;

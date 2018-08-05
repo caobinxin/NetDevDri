@@ -208,15 +208,15 @@ CountNonESCedOccurances	vimconfig/.vim/plugin/NERD_commenter.vim	/^function s:Co
 CreateDelimMapFromCms	vimconfig/.vim/plugin/NERD_commenter.vim	/^function s:CreateDelimMapFromCms()$/;"	f
 CreateMaps	vimconfig/.vim/plugin/NERD_commenter.vim	/^function! s:CreateMaps(target, combo)$/;"	f
 CreateMenuItems	vimconfig/.vim/plugin/NERD_commenter.vim	/^    function! s:CreateMenuItems(target, desc, root)$/;"	f
-DEBUG	pcie_net_dri.h	299;"	d
-DEBUG0	pcie_net_dri.h	338;"	d
-DEBUG1	pcie_net_dri.h	339;"	d
-DEBUG2	pcie_net_dri.h	340;"	d
-DEBUG3	pcie_net_dri.h	341;"	d
-DEBUG4	pcie_net_dri.h	342;"	d
-DEBUG5	pcie_net_dri.h	343;"	d
-DEBUG6	pcie_net_dri.h	344;"	d
-DEBUG7	pcie_net_dri.h	345;"	d
+DEBUG	pcie_net_dri.h	300;"	d
+DEBUG0	pcie_net_dri.h	343;"	d
+DEBUG1	pcie_net_dri.h	344;"	d
+DEBUG2	pcie_net_dri.h	345;"	d
+DEBUG3	pcie_net_dri.h	346;"	d
+DEBUG4	pcie_net_dri.h	347;"	d
+DEBUG5	pcie_net_dri.h	348;"	d
+DEBUG6	pcie_net_dri.h	349;"	d
+DEBUG7	pcie_net_dri.h	350;"	d
 DP83840	e100.c	/^	DP83840,$/;"	e	enum:eeprom_phy_iface	file:
 DP83840A	e100.c	/^	DP83840A = 10,$/;"	e	enum:eeprom_phy_iface	file:
 DRVER_NAME	m6x_drv/src/pcie.c	18;"	d	file:
@@ -336,9 +336,9 @@ I82553C	e100.c	/^	I82553C,$/;"	e	enum:eeprom_phy_iface	file:
 I82555	e100.c	/^	I82555,$/;"	e	enum:eeprom_phy_iface	file:
 INTDELAY	e100.c	1243;"	d	file:
 INTEL_8255X_ETHERNET_DEVICE	e100.c	208;"	d	file:
-INTRUPT_RECEIVE_COMPLE	pcie_net_dri.h	359;"	d
-INTRUPT_RECEIVE_START	pcie_net_dri.h	357;"	d
-INTRUPT_SEND_COMPLE	pcie_net_dri.h	358;"	d
+INTRUPT_RECEIVE_COMPLE	pcie_net_dri.h	364;"	d
+INTRUPT_RECEIVE_START	pcie_net_dri.h	362;"	d
+INTRUPT_SEND_COMPLE	pcie_net_dri.h	363;"	d
 IdoAccept	vimconfig/.vim/plugin/lookupfile.vim	/^function! s:IdoAccept(splitWin, key)$/;"	f
 IdoBS	vimconfig/.vim/plugin/lookupfile.vim	/^function! s:IdoBS()$/;"	f
 IdoSwitchTo	vimconfig/.vim/plugin/lookupfile.vim	/^function! s:IdoSwitchTo(mode)$/;"	f
@@ -475,9 +475,9 @@ NoSuchPhy	e100.c	/^	NoSuchPhy = 0,$/;"	e	enum:eeprom_phy_iface	file:
 NumLinesInBuf	vimconfig/.vim/plugin/NERD_commenter.vim	/^function s:NumLinesInBuf()$/;"	f
 NumberOfLeadingTabs	vimconfig/.vim/plugin/NERD_commenter.vim	/^function s:NumberOfLeadingTabs(s)$/;"	f
 OpenCurFile	vimconfig/.vim/autoload/lookupfile.vim	/^function! s:OpenCurFile(splitWin)$/;"	f
-PCIE_NET_DRI_DEBUG	pcie_net_dri.h	336;"	d
-PDEBUG	pcie_net_dri.h	348;"	d
-PDEBUG	pcie_net_dri.h	354;"	d
+PCIE_NET_DRI_DEBUG	pcie_net_dri.h	341;"	d
+PDEBUG	pcie_net_dri.h	353;"	d
+PDEBUG	pcie_net_dri.h	359;"	d
 PWD	Makefile	/^PWD := $(shell pwd)$/;"	m
 PWD	m6x_drv/src/Makefile	/^PWD := $(shell pwd)$/;"	m
 PWD	test_dma/Makefile	/^PWD := $(shell pwd)$/;"	m
@@ -527,7 +527,7 @@ RU_SUSPENDED	e100.c	/^	RU_SUSPENDED = 0,$/;"	e	enum:ru_state	file:
 RU_SUSPENDED	pcie_net_dri.h	/^	RU_SUSPENDED = 0,$/;"	e	enum:ru_state
 RU_UNINITIALIZED	e100.c	/^	RU_UNINITIALIZED = -1,$/;"	e	enum:ru_state	file:
 RU_UNINITIALIZED	pcie_net_dri.h	/^	RU_UNINITIALIZED = -1,$/;"	e	enum:ru_state
-RX_LEN	pcie_net_dri.h	360;"	d
+RX_LEN	pcie_net_dri.h	365;"	d
 ReleaseKeyPresses	vimconfig/.vim/plugin/supertab.vim	/^function! s:ReleaseKeyPresses()$/;"	f
 RemapLookupFile	vimconfig/.vim/plugin/lookupfile.vim	/^function! s:RemapLookupFile(cmd)$/;"	f
 RemoveCComments	vimconfig/.vim/autoload/omni/cpp/utils.vim	/^function! s:RemoveCComments(szLine)$/;"	f
@@ -2040,11 +2040,13 @@ selective_reset	e100.c	/^	selective_reset = 0x0002,$/;"	e	enum:port	file:
 selftest	e100.c	/^	selftest        = 0x0001,$/;"	e	enum:port	file:
 selftest	e100.c	/^	} selftest;$/;"	m	struct:mem	typeref:struct:mem::__anon8	file:
 selftest	pcie_net_dri.h	/^	} selftest;$/;"	m	struct:mem	typeref:struct:mem::__anon24
+send_dma_ops	pcie_net_dri.c	/^int send_dma_ops(struct net_device *netdev)$/;"	f
 send_dma_phy_addr	pcie_net_dri.h	/^	dma_addr_t send_dma_phy_addr ;$/;"	m	struct:pcie_ether_data_t
 setCompletefunc	vimconfig/.vim/autoload/acp.vim	/^function s:setCompletefunc()$/;"	f
 setTempOption	vimconfig/.vim/autoload/acp.vim	/^function s:setTempOption(group, name, value)$/;"	f
 setupStatusline	vimconfig/.vim/plugin/NERD_tree.vim	/^function! s:setupStatusline()$/;"	f
 setupSyntaxHighlighting	vimconfig/.vim/plugin/NERD_tree.vim	/^function! s:setupSyntaxHighlighting()$/;"	f
+shortpkt	pcie_net_dri.c	/^char shortpkt[ETH_ZLEN] ;$/;"	v
 showMenu	vimconfig/.vim/plugin/NERD_tree.vim	/^function! s:showMenu()$/;"	f
 sign_buffer	m6x_drv/src/app.c	/^unsigned char sign_buffer[4096];$/;"	v
 signature	e100.c	/^		u32 signature;$/;"	m	struct:mem::__anon8	file:
@@ -2127,6 +2129,7 @@ tx_command	pcie_net_dri.h	/^	__le16 tx_command;$/;"	m	struct:pcie_ether_data_t
 tx_deferred	e100.c	/^		tx_underruns, tx_lost_crs, tx_deferred, tx_single_collisions,$/;"	m	struct:stats	file:
 tx_deferred	e100.c	/^	u32 tx_deferred;$/;"	m	struct:nic	file:
 tx_deferred	pcie_net_dri.h	/^	u32 tx_deferred;$/;"	m	struct:pcie_ether_data_t
+tx_dm	pcie_net_dri.h	/^	dm_t tx_dm ;$/;"	m	struct:pcie_ether_data_t
 tx_dynamic_tbd	e100.c	/^	   tx_dynamic_tbd:1);$/;"	m	struct:config	file:
 tx_errors	pcie_net_dri.h	/^		int tx_errors ;$/;"	m	struct:pcie_ether_data_t::stats
 tx_fc_pause	e100.c	/^	u32 tx_fc_pause;$/;"	m	struct:nic	file:

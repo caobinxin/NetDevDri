@@ -157,6 +157,31 @@ int receive_dma_ops(struct net_device *netdev)
 	return 0;
 }
 
+int send_dma_ops(struct net_device *netdev)
+{
+	int i;
+	static int flag = 0;
+    dm_t *dm = NULL ;
+	static unsigned int  *dword;
+	static unsigned char *buf;
+	static int size = 4096 ;
+	pcie_ether_ptp_m6x_pri_data_t *priv = netdev_priv( netdev) ;
+	dm = &priv->tx_dm ;
+	PDEBUG( DEBUG7, "发送缓冲区的地址信息 藏在 priv->tx_dm 中") ;
+	if(flag == 0)
+	{
+		dmalloc(netdev,dm, size);
+		dword  = (unsigned int  *)(dm->vir);
+		buf    = (unsigned char *)(dm->vir);
+		flag = 1;
+	}
+	memset(buf, 0x00, 4096);
+	printk(KERN_ERR "phy(0xl%x, 0xl%x), virt(0x%lx, 0x%lx)\n", dm->phy, virt_to_phys(dm->vir), dm->vir, phys_to_virt(dm->phy) );
+	PDEBUG( DEBUG7, "发送缓冲区的大小是 %d\n", size) ;
+	return 0;
+}
+
+
 int dmalloc(struct net_device *netdev,dm_t *dm, int size)
 {
 	pcie_ether_ptp_m6x_pri_data_t *priv = netdev_priv( netdev) ;
@@ -379,11 +404,11 @@ int m6x_hw_tx(char *data, int len, struct net_device *netdev)
 	int ret = 0 ;
 	pcie_ether_ptp_m6x_pri_data_t *priv = netdev_priv( netdev) ;
 
-	priv->send_dma_phy_addr = dma_map_single( &priv->pdev->dev, data, len, PCI_DMA_TODEVICE) ; /*这里拿到的是物理地址*/
+	//priv->send_dma_phy_addr = dma_map_single( &priv->pdev->dev, data, len, PCI_DMA_TODEVICE) ; /*这里拿到的是物理地址*/
 
 	/*启动硬件开始dma发送*/
 	PDEBUG(DEBUG7, "DMA 发送\n") ;
-	hw_xmit( priv->send_dma_phy_addr, len) ;
+	hw_xmit( priv->tx_dm.phy, len) ;
 	PDEBUG(DEBUG7, "DMA 发送结束\n") ;
 
 
@@ -415,7 +440,9 @@ int m6x_start_xmit(struct sk_buff *skb, struct net_device *netdev)
 	/*2. 记住skb，可以在中断时刻 释放*/
 	priv->skb = skb ;
 	
+	memcpy(priv->tx_dm.vir, skb->data, skb->len) ;
 	/*3. 由实际的硬件去发送*/
+	hexdump("send data ->:", data, len) ;
 	m6x_hw_tx(data, len, netdev) ;
 
 	/*4. 协议栈停止回调 m6x_start_xmit 函数*/
@@ -641,6 +668,8 @@ static int pcie_net_probe(struct pci_dev *pdev,
 	/*映射接收 dma 空间*/
 	PDEBUG( DEBUG7, "分配接收缓冲区地址和大小 全局就分配这一次,在固定的地址处接收网卡传回的数据") ;
 	receive_dma_ops(netdev) ;
+	PDEBUG( DEBUG7, "分配发送缓冲区地址和大小 全局就分配这一次,在固定的地址处发送网络协议栈的数据") ;
+	send_dma_ops(netdev) ;
 
 	strcpy(netdev->name, "eth_M6x(%d)");
 	if ((err = register_netdev(netdev))) {
